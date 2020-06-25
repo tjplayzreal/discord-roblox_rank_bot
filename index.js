@@ -28,4 +28,11 @@ let commandlist = []
 let OneShout = true
 let shout
 
-// picking this up later
+async function getShout() {
+   let channel = await client.channels.cache.get(process.env.shoutchannelid)
+   if (OneShout == true) {
+     OneShout = false
+     shout = await roblox.getShout(Number(process.env.groupId))
+     setTimeout(getShout, 30000)
+   }
+}
